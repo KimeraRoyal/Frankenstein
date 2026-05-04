@@ -1,0 +1,14 @@
+{
+    "name": "Bodybuilder.Map",
+    "rootNamespace": "Bodybuilder",
+    "references": ["GUID:82cdfe90e5fdc3d4496428bac22e1e6a"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
