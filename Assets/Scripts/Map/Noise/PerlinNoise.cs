@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Bodybuilder
+namespace Bodybuilder.Map.Noise
 {
     [Serializable]
     public class PerlinNoise : PerlinNoiseTexture

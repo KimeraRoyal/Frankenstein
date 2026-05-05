@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Bodybuilding
+namespace Bodybuilding.Map.Tile
 {   
     [CreateAssetMenu(fileName = "Tile Type", menuName = "Bodybuilding/Tile Type")]
     public class TileType : ScriptableObject

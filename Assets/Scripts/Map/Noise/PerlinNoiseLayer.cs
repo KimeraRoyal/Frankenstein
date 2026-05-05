@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Bodybuilder
+namespace Bodybuilder.Map.Noise
 {
     [Serializable]
     public class PerlinNoiseLayer

@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 116470564}
   - component: {fileID: 116470565}
   m_Layer: 0
-  m_Name: Layer
+  m_Name: Overground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,30 +164,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tilePrefab: {fileID: 2122124920044860329, guid: 5acb12c4339abbb48bc761445a1c0d17, type: 3}
-  _groundType: {fileID: 11400000, guid: 4aa5270e36c83bc439a04cfa21d7f2e4, type: 2}
-  _forestType: {fileID: 11400000, guid: d49f6f79c2c5a7c4384d178775b8aa7e, type: 2}
-  _offset: {x: 0, y: 0}
+  _offset: {x: 0, y: 0, z: 0}
   _size: {x: 25, y: 25}
-  _height: 2
-  _noise:
-    _textureSize: {x: 32, y: 32}
-    _noiseTexture: {fileID: 0}
-    _r:
-      _scale: {x: 4, y: 4}
-      _cutoffMin: 0.3
-      _cutoffMax: 1
-      _invertCutoff: 0
-    _g:
-      _scale: {x: 5, y: 3}
-      _cutoffMin: 0.55
-      _cutoffMax: 1
-      _invertCutoff: 0
-    _b:
-      _scale: {x: 1, y: 1}
-      _cutoffMin: 0
-      _cutoffMax: 1
-      _invertCutoff: 0
-    _alphaBehaviour: 0
+  _builders:
+  - {fileID: 11400000, guid: 31aef7b78a3f8a043a1a34e4b751ad73, type: 2}
 --- !u!1 &1536738524
 GameObject:
   m_ObjectHideFlags: 0

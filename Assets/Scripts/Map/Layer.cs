@@ -1,30 +1,30 @@
 using System.Collections.Generic;
-using Bodybuilding;
+using Bodybuilder.Map.Builder;
+using Bodybuilder.Map.Noise;
+using Bodybuilding.Map.Tile;
 using UnityEngine;
 
-namespace Bodybuilder
+namespace Bodybuilder.Map
 {
     public class Layer : MonoBehaviour
     {
         [SerializeField] private Tile _tilePrefab;
         
-        [SerializeField] private TileType _groundType;
-        [SerializeField] private TileType _forestType;
-
-        [SerializeField] private Vector2Int _offset;
-        
+        [SerializeField] private Vector3Int _offset;
         [SerializeField] private Vector2Int _size = new(20, 20);
-        [SerializeField] private float _height = 1.0f;
 
-        [SerializeField] private RGBPerlinNoise _noise;
+        [SerializeField] private LayerBuilder[] _builders;
 
         private Tile[,] _tiles;
-        private Stack<Tile> _inactiveTiles = new();
+        private readonly Stack<Tile> _inactiveTiles = new();
 
         private void Start()
         {
-            _noise.TextureSize = _size;
-            _noise.Generate();
+            var types = new TileType[_size.y, _size.x];
+            foreach (var builder in _builders)
+            {
+                builder.BuildLayer(types);
+            }
             
             _tiles = new Tile[_size.y, _size.x];
             var position = Vector2Int.zero;
@@ -32,15 +32,11 @@ namespace Bodybuilder
             {
                 for (position.x = 0; position.x < _size.x; position.x++)
                 {
-                    var sample = _noise.Sample(position);
-                    var alpha = _noise.SampleAlpha(position);
-                    
-                    var tile = PlaceTile(position, alpha.r > 0.5f ? alpha.g > 0.5f ? _forestType : _groundType : null);
-                    if(tile) { tile.Elevation = sample.r * _height; }
+                    _tiles[position.y, position.x] = PlaceTile(position, types[position.y, position.x]);
                 }
             }
 
-            var offset = new Vector3(-_size.x / 2.0f + _offset.x, 0, _size.y + _offset.y);
+            var offset = new Vector3(-_size.x / 2.0f + _offset.x, _offset.y, _size.y + _offset.z);
             transform.localPosition = offset;
         }
 

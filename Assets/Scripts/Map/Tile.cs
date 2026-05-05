@@ -1,8 +1,7 @@
-using System;
-using Bodybuilding;
+using Bodybuilding.Map.Tile;
 using UnityEngine;
 
-namespace Bodybuilder
+namespace Bodybuilder.Map
 {
     public class Tile : MonoBehaviour
     {

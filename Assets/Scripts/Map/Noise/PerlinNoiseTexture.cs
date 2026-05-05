@@ -3,7 +3,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-namespace Bodybuilder
+namespace Bodybuilder.Map.Noise
 {
     [Serializable]
     public abstract class PerlinNoiseTexture
