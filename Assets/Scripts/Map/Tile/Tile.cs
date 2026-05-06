@@ -1,5 +1,6 @@
 using Bodybuilding.Map.Tile;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Bodybuilder.Map
 {
@@ -7,10 +8,10 @@ namespace Bodybuilder.Map
     {
         private TileType _type;
 
-        [SerializeField] [HideInInspector] private MeshRenderer _mesh;
-        
         private Vector2Int _position;
         private float _elevation;
+
+        public UnityEvent<TileType> OnAssignedType;
 
         public TileType Type
         {
@@ -19,7 +20,7 @@ namespace Bodybuilder.Map
             {
                 if(_type == value) { return; }
                 _type = value;
-                SetMeshColor();
+                OnAssignedType?.Invoke(_type);
             }
         }
 
@@ -45,18 +46,5 @@ namespace Bodybuilder.Map
         
         private void AdjustPosition()
             => transform.localPosition = new Vector3(_position.x, _elevation, -_position.y);
-
-        private void SetMeshColor()
-        {
-            var propertyBlock = new MaterialPropertyBlock();
-            _mesh.GetPropertyBlock(propertyBlock);
-            propertyBlock.SetColor("_BaseColor", _type.Color);
-            _mesh.SetPropertyBlock(propertyBlock);
-        }
-
-        private void OnValidate()
-        {
-            _mesh = GetComponentInChildren<MeshRenderer>();
-        }
     }
 }

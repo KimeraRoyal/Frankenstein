@@ -38,6 +38,8 @@ namespace Bodybuilder.Map
 
             var offset = new Vector3(-_size.x / 2.0f + _offset.x, _offset.y, _size.y + _offset.z);
             transform.localPosition = offset;
+            
+            
         }
 
         private Tile PlaceTile(Vector2Int position, TileType type)
