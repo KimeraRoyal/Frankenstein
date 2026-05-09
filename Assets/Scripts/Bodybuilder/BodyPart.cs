@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Bodybuilder
+namespace Bodybuilder.Bodybuilder
 {
     public class BodyPart : MonoBehaviour
     {

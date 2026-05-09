@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GFX
+namespace Bodybuilder.GFX
 {
     public class CameraColor : MonoBehaviour
     {

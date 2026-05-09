@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Util
+namespace Bodybuilder.Util.LinearAlgebra
 {
     [Serializable]
     public struct Line

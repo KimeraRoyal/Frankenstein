@@ -15,9 +15,11 @@ MonoBehaviour:
   _groundTile: {fileID: 11400000, guid: 4aa5270e36c83bc439a04cfa21d7f2e4, type: 2}
   _forestTile: {fileID: 11400000, guid: d49f6f79c2c5a7c4384d178775b8aa7e, type: 2}
   _waterTile: {fileID: 11400000, guid: 956f7717bc7d4cb4498d3a4e99c067d1, type: 2}
-  _height: 2
+  _height: 1
+  _minSample: 0.3
+  _maxSample: 0.6
   _noise:
-    _textureSize: {x: 25, y: 25}
+    _textureSize: {x: 20, y: 20}
     _noiseTexture: {fileID: 0}
     _r:
       _scale: {x: 4, y: 4}

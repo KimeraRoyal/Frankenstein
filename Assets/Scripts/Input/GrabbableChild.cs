@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Input
+namespace Bodybuilder.Input
 {
     public class GrabbableChild : MonoBehaviour, Grabbable
     {

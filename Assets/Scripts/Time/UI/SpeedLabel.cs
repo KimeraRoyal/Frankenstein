@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Bodybuilder
+namespace Bodybuilder.Time.UI
 {
     [RequireComponent(typeof(TMP_Text))]
     public class SpeedLabel : MonoBehaviour

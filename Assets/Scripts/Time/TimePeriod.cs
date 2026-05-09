@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Bodybuilder
+namespace Bodybuilder.Time
 {
     [Serializable]
     public struct TimePeriod

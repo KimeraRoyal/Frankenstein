@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Util
+namespace Bodybuilder.Util.Time
 {
     [Serializable]
     public class Timer
@@ -48,7 +48,7 @@ namespace Util
         public void Update()
         {
             if(!_running) { return; }
-            _timer += Time.deltaTime * _speed;
+            _timer += UnityEngine.Time.deltaTime * _speed;
             if(_timer < _interval) { return; }
             _timer -= _interval;
             if(!_loop) { Stop(); }

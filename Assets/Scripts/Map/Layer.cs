@@ -1,30 +1,33 @@
-using System.Collections.Generic;
-using Bodybuilder.Map.Builder;
-using Bodybuilder.Map.Noise;
 using Bodybuilding.Map.Tile;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Bodybuilder.Map
 {
     public class Layer : MonoBehaviour
     {
-        [SerializeField] private Tile _tilePrefab;
-        
-        [SerializeField] private Vector3Int _offset;
-        [SerializeField] private Vector2Int _size = new(20, 20);
-
-        [SerializeField] private LayerBuilder[] _builders;
+        [SerializeField] private Vector2Int _size;
+        private float _elevation;
+        private Vector3 _offset;
+        private Vector3 _topLeft;
 
         private Tile[,] _tiles;
-        private readonly Stack<Tile> _inactiveTiles = new();
 
-        private void Start()
+        public Vector2Int Size => _size;
+
+        public float Elevation => _elevation;
+
+        public Vector3 Offset => _offset;
+
+        public Tile[,] Tiles => _tiles;
+
+        public UnityEvent<Tile[,]> OnBuilt;
+
+        public void Build(LayerInfo info, Vector2Int size)
         {
-            var types = new TileType[_size.y, _size.x];
-            foreach (var builder in _builders)
-            {
-                builder.BuildLayer(types);
-            }
+            _size = size;
+            _elevation = info.Elevation;
+            _offset = new Vector3(-_size.x, 0, _size.y) / 2.0f;
             
             _tiles = new Tile[_size.y, _size.x];
             var position = Vector2Int.zero;
@@ -32,39 +35,37 @@ namespace Bodybuilder.Map
             {
                 for (position.x = 0; position.x < _size.x; position.x++)
                 {
-                    _tiles[position.y, position.x] = PlaceTile(position, types[position.y, position.x]);
+                    _tiles[position.y, position.x] = new Tile(null, position);
                 }
             }
+            
+            info.Build(_tiles);
+            _topLeft = GetTilePosition(Vector2Int.zero);
 
-            var offset = new Vector3(-_size.x / 2.0f + _offset.x, _offset.y, _size.y + _offset.z);
-            transform.localPosition = offset;
-            
-            
+            transform.localPosition = Vector3.up * _elevation;
+            OnBuilt?.Invoke(_tiles);
         }
 
-        private Tile PlaceTile(Vector2Int position, TileType type)
+        public Tile GetTileAt(Vector3 position)
         {
-            if (type)
-            {
-                if (!_tiles[position.y, position.x])
-                {
-                    _tiles[position.y, position.x] =
-                        _inactiveTiles.TryPop(out var tile)
-                        ? tile
-                        : Instantiate(_tilePrefab, transform);
-                }
-                _tiles[position.y, position.x].gameObject.SetActive(true);
-                _tiles[position.y, position.x].gameObject.name = type.name;
-                _tiles[position.y, position.x].Position = position;
-                _tiles[position.y, position.x].Type = type;
-            }
-            else if (_tiles[position.y, position.x])
-            {
-                _inactiveTiles.Push(_tiles[position.y, position.x]);
-                _tiles[position.y, position.x].gameObject.SetActive(false);
-                _tiles[position.y, position.x] = null;
-            }
-            return _tiles[position.y, position.x];
+            var relativePosition = position - _topLeft;
+            
+            // TODO: Clamps at edges, could be made to error instead
+            var tile = new Vector2Int(Mathf.RoundToInt(relativePosition.x), Mathf.RoundToInt(-relativePosition.z));
+            tile.x = Mathf.Clamp(tile.x, 0, _size.x - 1);
+            tile.y = Mathf.Clamp(tile.y, 0, _size.y - 1);
+            
+            return _tiles[tile.y, tile.x];
         }
+        
+        public Vector3 GetTilePosition(Vector2Int tile)
+        {
+            tile.x = Mathf.Clamp(tile.x, 0, _size.x - 1);
+            tile.y = Mathf.Clamp(tile.y, 0, _size.y - 1);
+            return new Vector3(_tiles[tile.y, tile.x].Position.x, GetTileElevation(tile), -_tiles[tile.y, tile.x].Position.y) + Offset;
+        }
+
+        public float GetTileElevation(Vector2Int tile)
+            => _tiles[tile.y, tile.x].Elevation + _elevation;
     }
 }

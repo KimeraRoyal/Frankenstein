@@ -1,0 +1,18 @@
+{
+    "name": "Bodybuilder.Map.Pathfinder",
+    "rootNamespace": "Bodybuilder",
+    "references": [
+        "GUID:1f1a9429b0d988944b3148a04c0c6cc2",
+        "GUID:82cdfe90e5fdc3d4496428bac22e1e6a",
+        "GUID:ab56d04769eaf1d4c961de3693c7ac54"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

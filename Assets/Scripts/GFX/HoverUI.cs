@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace GFX
+namespace Bodybuilder.GFX
 {
     public class HoverUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Input
+namespace Bodybuilder.Input
 {
     public class Draggable : MonoBehaviour, Grabbable
     {
@@ -11,7 +11,6 @@ namespace Input
         public Vector2 Drag(Vector2 amount)
         {
             transform.localPosition += (Vector3) amount;
-            Debug.Log($"Draggable Delta: {amount}");
             return amount;
         }
     }

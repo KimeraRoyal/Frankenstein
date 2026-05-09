@@ -1,29 +1,32 @@
+using Bodybuilder.Util.Time;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Util;
 
-public class PlayButton : MonoBehaviour
+namespace Bodybuilder
 {
-    [SerializeField] private Timer _waitTimer;
-
-    private void Awake()
+    public class PlayButton : MonoBehaviour
     {
-        _waitTimer.OnInterval.AddListener(Play);
-    }
+        [SerializeField] private Timer _waitTimer;
 
-    private void Update()
-    {
-        _waitTimer.Update();
-    }
+        private void Awake()
+        {
+            _waitTimer.OnInterval.AddListener(Play);
+        }
 
-    public void WaitAndPlay()
-    {
-        if(_waitTimer.Running) { return; }
-        _waitTimer.Start();
-    }
+        private void Update()
+        {
+            _waitTimer.Update();
+        }
 
-    public void Play()
-    {
-        SceneManager.LoadScene(1);
+        public void WaitAndPlay()
+        {
+            if(_waitTimer.Running) { return; }
+            _waitTimer.Start();
+        }
+
+        public void Play()
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 }

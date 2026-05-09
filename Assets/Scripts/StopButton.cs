@@ -1,29 +1,31 @@
+using Bodybuilder.Util.Time;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Util;
 
-public class StopButton : MonoBehaviour
+namespace Bodybuilder
 {
-    [SerializeField] private Timer _waitTimer;
-
-    private void Awake()
+    public class StopButton : MonoBehaviour
     {
-        _waitTimer.OnInterval.AddListener(Stop);
-    }
+        [SerializeField] private Timer _waitTimer;
 
-    private void Update()
-    {
-        _waitTimer.Update();
-    }
+        private void Awake()
+        {
+            _waitTimer.OnInterval.AddListener(Stop);
+        }
 
-    public void WaitAndStop()
-    {
-        if(_waitTimer.Running) { return; }
-        _waitTimer.Start();
-    }
+        private void Update()
+        {
+            _waitTimer.Update();
+        }
 
-    public void Stop()
-    {
-        Application.Quit();
+        public void WaitAndStop()
+        {
+            if(_waitTimer.Running) { return; }
+            _waitTimer.Start();
+        }
+
+        public void Stop()
+        {
+            Application.Quit();
+        }
     }
 }

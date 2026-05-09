@@ -1,0 +1,18 @@
+{
+    "name": "Bodybuilder.Map.NPC",
+    "rootNamespace": "Bodybuilder",
+    "references": [
+        "Bodybuilder.Map",
+        "Bodybuilder.Input",
+        "Bodybuilder.Time"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

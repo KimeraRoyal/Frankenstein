@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Util
+namespace Bodybuilder.Util
 {
     [Serializable]
     public class RangedCurveAngled2D

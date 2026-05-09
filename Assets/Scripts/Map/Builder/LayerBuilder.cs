@@ -5,6 +5,6 @@ namespace Bodybuilder.Map.Builder
 {
     public abstract class LayerBuilder : ScriptableObject
     {
-        public abstract void BuildLayer(TileType[,] tiles);
+        public abstract void BuildLayer(Tile[,] tiles);
     }
 }

@@ -1,50 +1,38 @@
-using Bodybuilding.Map.Tile;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Bodybuilder.Map
+namespace Bodybuilding.Map.Tile
 {
-    public class Tile : MonoBehaviour
+    public class Tile
     {
         private TileType _type;
 
         private Vector2Int _position;
         private float _elevation;
 
-        public UnityEvent<TileType> OnAssignedType;
-
         public TileType Type
         {
             get => _type;
-            set
-            {
-                if(_type == value) { return; }
-                _type = value;
-                OnAssignedType?.Invoke(_type);
-            }
+            set => _type = value;
         }
 
         public Vector2Int Position
         {
             get => _position;
-            set
-            {
-                _position = value;
-                AdjustPosition();
-            }
+            set => _position = value;
         }
 
         public float Elevation
         {
             get => _elevation;
-            set
-            {
-                _elevation = value;
-                AdjustPosition();
-            }
+            set => _elevation = value;
         }
-        
-        private void AdjustPosition()
-            => transform.localPosition = new Vector3(_position.x, _elevation, -_position.y);
+
+        public Tile(TileType type, Vector2Int position, float elevation = 0.0f)
+        {
+            _type = type;
+            _position = position;
+            _elevation = elevation;
+        }
     }
 }

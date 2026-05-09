@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Bodybuilder
+namespace Bodybuilder.Time.UI
 {
     [RequireComponent(typeof(Button))]
     public class SpeedButton : MonoBehaviour

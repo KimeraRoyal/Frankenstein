@@ -1,8 +1,8 @@
+using Bodybuilder.Util.Time;
 using UnityEngine;
 using UnityEngine.Events;
-using Util;
 
-namespace Bodybuilder
+namespace Bodybuilder.Time
 {
     public class Clock : MonoBehaviour
     {

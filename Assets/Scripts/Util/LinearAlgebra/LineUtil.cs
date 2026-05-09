@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Util
+namespace Bodybuilder.Util.LinearAlgebra
 {
     public static class LineUtil
     {

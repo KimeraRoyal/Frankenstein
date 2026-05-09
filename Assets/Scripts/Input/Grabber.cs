@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Input
+namespace Bodybuilder.Input
 {
     [RequireComponent(typeof(Mouse), typeof(Camera))]
     public class Grabber : MonoBehaviour
@@ -19,18 +19,16 @@ namespace Input
             _mouse = GetComponent<Mouse>();
             _camera = GetComponent<Camera>();
             
-            _mouse.OnPressed.AddListener(GrabAt);
-            _mouse.OnReleased.AddListener(Release);
+            _mouse.OnPressed += GrabAt;
+            _mouse.OnReleased += Release;
             _mouse.OnDragged += Drag;
         }
 
         private void GrabAt(Vector2 screenPos)
         {
-            _previousPoint = _camera.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 0.0f));
-            var result = Physics2D.OverlapCircle(_previousPoint, _grabRadius, _grabbableMask);   
-            if(!result) { return; }
-
-            _grabbed = result.GetComponent<Grabbable>();
+            var ray = _camera.ScreenPointToRay(new Vector3(screenPos.x, screenPos.y, 5.0f));
+            if(!Physics.SphereCast(ray, _grabRadius, out var hitInfo, _grabbableMask)) { return; }
+            _grabbed = hitInfo.collider.GetComponent<Grabbable>();
             if (_grabbed != null && !_grabbed.Grab()) { _grabbed = null; }
         }
 
@@ -40,26 +38,9 @@ namespace Input
             _grabbed = null;
         }
 
-        private Vector2 Drag(Vector2 screenPos, Vector2 screenDelta)
+        private void Drag(Vector2 screenPos, Vector2 screenDelta)
         {
-            var point = _camera.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 0.0f));
             
-            var worldDelta = point - _previousPoint;
-            
-            var returnDelta = worldDelta;
-            if(_grabbed != null) { returnDelta = _grabbed.Drag(point - _previousPoint); }
-            var diff = worldDelta - returnDelta;
-            
-            point -= diff;
-            _previousPoint = point;
-
-            var newScreenPos = (Vector2)_camera.WorldToScreenPoint(point);
-            var screenDiff = newScreenPos - screenPos;
-            if (Mathf.Abs(screenDiff.x) > 0.0001f && Mathf.Abs(screenDiff.y) > 0.0001f)
-            {
-                screenDelta += screenDiff;
-            }
-            return screenDelta;
         }
         
         private void OnDrawGizmosSelected()

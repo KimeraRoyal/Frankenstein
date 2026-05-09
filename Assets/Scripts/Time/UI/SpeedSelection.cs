@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Bodybuilder
+namespace Bodybuilder.Time.UI
 {
     public class SpeedSelection : MonoBehaviour
     {

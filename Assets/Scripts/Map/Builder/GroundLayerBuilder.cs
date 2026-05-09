@@ -12,10 +12,11 @@ namespace Bodybuilder.Map.Builder
         [SerializeField] private TileType _waterTile;
         
         [SerializeField] private float _height = 1.0f;
+        [SerializeField] [Range(0.0f, 1.0f)] private float _minSample = 0.0f, _maxSample = 1.0f;
 
         [SerializeField] private RGBPerlinNoise _noise;
         
-        public override void BuildLayer(TileType[,] tiles)
+        public override void BuildLayer(Tile[,] tiles)
         {
             var size = new Vector2Int(tiles.GetLength(0), tiles.GetLength(1));
             _noise.TextureSize = size;
@@ -29,7 +30,8 @@ namespace Bodybuilder.Map.Builder
                     var sample = _noise.Sample(position);
                     var alpha = _noise.SampleAlpha(position);
                     
-                    tiles[position.y, position.x] = alpha.r > 0.5f ? alpha.g > 0.5f ? _forestTile : _groundTile : _waterTile;
+                    tiles[position.y, position.x].Type = alpha.r > 0.5f ? alpha.g > 0.5f ? _forestTile : _groundTile : _waterTile;
+                    tiles[position.y, position.x].Elevation = (Mathf.Clamp(sample.r, _minSample, _maxSample) - _minSample) / (_maxSample - _minSample) * _height;
                 }
             }
             
