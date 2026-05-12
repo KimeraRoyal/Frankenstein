@@ -1,3 +1,4 @@
+using Bodybuilder.Map.Layers;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,7 +24,7 @@ namespace Bodybuilder.Map
             for(var i = 0; i < _layerInfo.Length; i++)
             {
                 _layers[i] = Instantiate(_layerPrefab, Vector3.up * _layerInfo[i].Elevation, Quaternion.identity, transform);
-                _layers[i].Build(_layerInfo[i], _size);
+                _layers[i].Build(i, _layerInfo[i], _size);
                 OnLayerBuilt?.Invoke(_layers[i]);
             }
             OnBuilt?.Invoke();

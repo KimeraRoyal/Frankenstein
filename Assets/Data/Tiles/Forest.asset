@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _color: {r: 0.16260235, g: 0.5471698, b: 0.42597693, a: 1}
   _iconMaterial: {fileID: 2100000, guid: af27ac94c0052584e9351ebbb671a6a6, type: 2}
+  _maxFeatures: 1
+  _terrain: 0
+  _movementPenalty: 2

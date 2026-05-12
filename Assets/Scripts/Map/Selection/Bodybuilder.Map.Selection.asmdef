@@ -1,0 +1,21 @@
+{
+    "name": "Bodybuilder.Map.Selection",
+    "rootNamespace": "Bodybuilder",
+    "references": [
+        "GUID:050905eaf24a86b4a914aa304552652d",
+        "GUID:ab56d04769eaf1d4c961de3693c7ac54",
+        "GUID:82cdfe90e5fdc3d4496428bac22e1e6a",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:1f1a9429b0d988944b3148a04c0c6cc2",
+        "GUID:c31709f3193173542a7c9be232a70794"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

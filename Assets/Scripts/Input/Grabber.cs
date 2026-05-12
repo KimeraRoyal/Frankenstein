@@ -8,8 +8,10 @@ namespace Bodybuilder.Input
         private Mouse _mouse;
         private Camera _camera;
 
-        private Vector3 _previousPoint;
         private Grabbable _grabbed;
+        private float _grabbedDistance;
+        
+        private Vector3 _previousPoint;
 
         [SerializeField] private float _grabRadius = 1.0f;
         [SerializeField] private LayerMask _grabbableMask;
@@ -18,29 +20,63 @@ namespace Bodybuilder.Input
         {
             _mouse = GetComponent<Mouse>();
             _camera = GetComponent<Camera>();
+
+            var lmb = _mouse.Buttons[0];
+            lmb.OnPressed += GrabAt;
+            lmb.OnReleased += Release;
+            lmb.OnDragged += Drag;
             
-            _mouse.OnPressed += GrabAt;
-            _mouse.OnReleased += Release;
-            _mouse.OnDragged += Drag;
+            _grabbedDistance = _camera.farClipPlane;
         }
 
         private void GrabAt(Vector2 screenPos)
         {
-            var ray = _camera.ScreenPointToRay(new Vector3(screenPos.x, screenPos.y, 5.0f));
-            if(!Physics.SphereCast(ray, _grabRadius, out var hitInfo, _grabbableMask)) { return; }
+            var ray = _camera.ScreenPointToRay(new Vector3(screenPos.x, screenPos.y, _camera.farClipPlane));
+            if(!Physics.SphereCast(ray, _grabRadius, out var hitInfo, _camera.farClipPlane, _grabbableMask)) { return; }
+            
             _grabbed = hitInfo.collider.GetComponent<Grabbable>();
-            if (_grabbed != null && !_grabbed.Grab()) { _grabbed = null; }
+            if (_grabbed == null) { return; }
+            
+            if (!_grabbed.Grab())
+            {
+                _grabbed = null;
+                return;
+            }
+            
+            _grabbedDistance = (hitInfo.point - ray.origin).magnitude;
+            _previousPoint = transform.InverseTransformPoint(hitInfo.point);
         }
 
         private void Release(Vector2 screenPos)
         {
             _grabbed?.Release();
             _grabbed = null;
+
+            _grabbedDistance = _camera.farClipPlane;
         }
 
         private void Drag(Vector2 screenPos, Vector2 screenDelta)
         {
+            if(_grabbed == null) { return; }
+            var testPoint = new Vector3(screenPos.x, screenPos.y, _grabbedDistance);
+            testPoint = _camera.ScreenToWorldPoint(testPoint);
+
+            testPoint = transform.InverseTransformPoint(testPoint);
+            var delta = testPoint - _previousPoint;
+            delta.z = 0.0f;
+            if (_mouse.RMB.Held)
+            {
+                Debug.Log(delta / _grabbedDistance * 100.0f);
+            }
+            else if (_mouse.MMB.Held)
+            {
+                delta = new Vector3(0.0f, 0.0f, delta.y);
+                _grabbedDistance += delta.y;
+            }
+            delta = transform.TransformDirection(delta);
             
+            _grabbed.Drag(delta);
+            _previousPoint = testPoint;
         }
         
         private void OnDrawGizmosSelected()

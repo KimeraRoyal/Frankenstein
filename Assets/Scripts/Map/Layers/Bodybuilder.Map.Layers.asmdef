@@ -1,0 +1,17 @@
+{
+    "name": "Bodybuilder.Map.Layers",
+    "rootNamespace": "Bodybuilder",
+    "references": [
+        "GUID:82cdfe90e5fdc3d4496428bac22e1e6a",
+        "GUID:c31709f3193173542a7c9be232a70794"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

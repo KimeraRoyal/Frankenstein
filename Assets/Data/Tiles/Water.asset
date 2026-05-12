@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   _color: {r: 0.2653524, g: 0.3616459, b: 0.8396226, a: 1}
+  _iconMaterial: {fileID: 0}
+  _maxFeatures: 1
+  _terrain: 1
+  _movementPenalty: 2

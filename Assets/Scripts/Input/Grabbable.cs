@@ -7,6 +7,6 @@ namespace Bodybuilder.Input
         public bool Grab();
         public void Release();
 
-        public Vector2 Drag(Vector2 amount);
+        public Vector3 Drag(Vector3 amount);
     }
 }

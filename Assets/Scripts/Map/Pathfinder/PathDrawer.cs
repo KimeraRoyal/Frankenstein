@@ -1,55 +1,89 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Bodybuilder.Map.Selection;
+using Bodybuilding.Map.Tiles;
 using UnityEngine;
-using Mouse = Bodybuilder.Input.Mouse;
 
 namespace Bodybuilder.Map.Pathfinder
 {
     public class PathDrawer : MonoBehaviour
     {
-        private Map _map;
+        private MapSelection _selection;
 
-        private Mouse _mouse;
-        private Camera _camera;
-
-        [SerializeField] private LayerMask _mapMask;
-        private Vector2Int _lastTile;
+        [SerializeField] private PathVisualizer _pathVisualizerPrefab;
 
         private Path _path;
+        private PathVisualizer _pathVisualizer;
+        private Action<Path> OnPathCreated;
         private readonly List<Path.Waypoint> _points = new();
+        private Path.Waypoint _lastSelectedPoint;
 
         private void Awake()
         {
-            _map = FindAnyObjectByType<Map>();
-            
-            _mouse = FindAnyObjectByType<Mouse>();
-            _camera = _mouse.GetComponent<Camera>();
+            _selection = FindAnyObjectByType<MapSelection>();
 
-            _path = GetComponentInChildren<Path>();
-            _points.Add(new Path.Waypoint(Vector2Int.zero, 1));
-            _points.Add(new Path.Waypoint(Vector2Int.zero, 1));
-            
-            _mouse.OnMoved += MouseMoved;
-            _mouse.OnPressed += MousePressed;
+            _selection.OnTileHovered += OnHoverTile;
+            _selection.OnTileSelected += OnTileSelected;
         }
 
-        private void MouseMoved(Vector2 screenPos, Vector2 delta)
+        public bool RequestPath(Vector2Int startingPosition, Action<Path> pathCreatedCallback)
         {
-            var ray = _camera.ScreenPointToRay(new Vector3(screenPos.x, screenPos.y, _camera.farClipPlane));
-            
-            if(!Physics.Raycast(ray, out var hitInfo, _mapMask)) { return; }
+            if (_path) { return false; }
 
-            var tilePosition = _map.Layers[1].GetTileAt(hitInfo.point).Position;
-            if(tilePosition == _lastTile) { return; }
-            _lastTile = tilePosition;
+            _path = new Path();
+            _pathVisualizer = Instantiate(_pathVisualizerPrefab, transform);
+            _pathVisualizer.Path = _path;
             
-            _points[^1] = new Path.Waypoint(tilePosition, 1);
+            _points.Clear();
+            _lastSelectedPoint = new Path.Waypoint(startingPosition, 1);
+            _points.Add(_lastSelectedPoint);
+            _points.Add(_lastSelectedPoint);
+            
+            OnPathCreated = pathCreatedCallback;
+            return true;
+        }
+
+        public void ReturnPath()
+        {
+            if(!_path) { return; }
+            
+            // TODO: If path is empty
+            OnPathCreated?.Invoke(_path);
+            OnPathCreated = null;
+            
+            _path = null;
+            Destroy(_pathVisualizer.gameObject);
+        }
+
+        public void Extend()
+        {
+            if(!_path) { return; }
+            _points.Add(_points[^1]);
             _path.SetPoints(_points.ToArray());
         }
 
-        private void MousePressed(Vector2 screenPos)
+        private void OnHoverTile(Tile tile)
         {
-            if(_points == null || _points.Count < 1 || (_points.Count > 2 && _points[^1] == _points[^2])) { return; }
-            _points.Add(_points[^1]);
+            if (!_path) { return; }
+            
+            _points[^1] = tile != null && tile.Type ? new Path.Waypoint(tile.Position, tile.LayerIndex) : _points[^2];
+            _path.SetPoints(_points.ToArray());
+        }
+
+        private bool OnTileSelected(Tile tile)
+        {
+            if(!_path || tile == null || !tile.Type) { return true; }
+            
+            var waypoint = new Path.Waypoint(tile.Position, tile.LayerIndex);
+            if (waypoint == _lastSelectedPoint)
+            {
+                ReturnPath();
+                return true;
+            }
+            _points[^1] = waypoint;
+            _lastSelectedPoint = waypoint;
+            Extend();
+            return false;
         }
     }
 }

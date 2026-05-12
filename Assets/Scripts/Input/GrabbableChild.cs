@@ -17,7 +17,7 @@ namespace Bodybuilder.Input
         public void Release()
             => _parent.Release();
 
-        public Vector2 Drag(Vector2 amount)
+        public Vector3 Drag(Vector3 amount)
             => _parent.Drag(amount);
     }
 }

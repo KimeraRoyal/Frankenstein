@@ -15,7 +15,7 @@ namespace Bodybuilder.Input
             
         }
 
-        public Vector2 Drag(Vector2 amount)
+        public Vector3 Drag(Vector3 amount)
             => amount;
 
         protected abstract void Click();

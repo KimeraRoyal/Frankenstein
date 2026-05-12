@@ -1,0 +1,23 @@
+{
+    "name": "Bodybuilder.Map.Npcs",
+    "rootNamespace": "Bodybuilder",
+    "references": [
+        "Bodybuilder.Map",
+        "Bodybuilder.Input",
+        "Bodybuilder.Time",
+        "Bodybuilder.Map.Selection",
+        "Bodybuilder.Map.Selection.Selectables",
+        "Bodybuilder.Map.Layers",
+        "Bodybuilding.Map.Tiles",
+        "Bodybuilder.Map.Pathfinder"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

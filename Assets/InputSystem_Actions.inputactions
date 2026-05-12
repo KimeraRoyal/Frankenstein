@@ -43,7 +43,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Mouse LMB",
+                    "name": "Left Mouse Button",
                     "type": "Button",
                     "id": "41760010-099e-4ad7-8199-00f5a9234297",
                     "expectedControlType": "",
@@ -52,9 +52,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Mouse RMB",
+                    "name": "Right Mouse Button",
                     "type": "Button",
                     "id": "dc2c9e90-acf9-4702-a400-76822765e4d9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Middle Mouse Button",
+                    "type": "Button",
+                    "id": "2073b70f-241f-45b6-9586-3164635bb4ff",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -124,7 +133,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Mouse LMB",
+                    "action": "Left Mouse Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -135,7 +144,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Mouse RMB",
+                    "action": "Right Mouse Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dffea069-9a27-4bfc-ba2b-56cb3e55cc11",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Middle Mouse Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -1,7 +1,10 @@
 {
     "name": "Bodybuilder.Map",
     "rootNamespace": "Bodybuilder",
-    "references": ["GUID:82cdfe90e5fdc3d4496428bac22e1e6a"],
+    "references": [
+        "GUID:82cdfe90e5fdc3d4496428bac22e1e6a",
+        "GUID:050905eaf24a86b4a914aa304552652d"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
