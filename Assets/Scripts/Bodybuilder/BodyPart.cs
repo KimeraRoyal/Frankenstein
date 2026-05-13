@@ -34,7 +34,7 @@ namespace Bodybuilder.Bodybuilder
                 var movementSpeed = 0.0f;
                 if (TotalFootCount > 0)
                 {
-                    movementSpeed += _info.MovementSpeed + _childPoints.Sum(child => child.Part.TotalMovementSpeed);
+                    movementSpeed += _info.MovementSpeed + _childPoints.Sum(child => child.Part.TotalMovementSpeed) * _info.ValueMultiplier;
                 }
                 return movementSpeed;
             }
@@ -48,7 +48,7 @@ namespace Bodybuilder.Bodybuilder
                 var climbingSpeed = 0.0f;
                 if (TotalHandCount > 0)
                 {
-                    climbingSpeed += _info.ClimbingSpeed + _childPoints.Sum(child => child.Part.TotalClimbingSpeed);
+                    climbingSpeed += _info.ClimbingSpeed + _childPoints.Sum(child => child.Part.TotalClimbingSpeed * _info.ValueMultiplier);
                 }
                 return climbingSpeed;
             }
@@ -79,7 +79,8 @@ namespace Bodybuilder.Bodybuilder
 
         public bool Connect(ConnectionPoint point)
         {
-            if (!_connectionPoint || !_connectionPoint.Connect(point)) { return false; }
+            var body = point?.Part?.Body;
+            if ((body && !body.CanAddPoints(_info.PointCost)) || !_connectionPoint || !_connectionPoint.Connect(point)) { return false; }
             transform.parent = point.transform;
             transform.localRotation = Quaternion.identity;
             transform.localScale = Vector3.one;

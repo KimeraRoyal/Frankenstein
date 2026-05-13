@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0623657e5a0340df8d29f384bdd72557, type: 3}
   m_Name: Hand
   m_EditorClassIdentifier: 
+  _partPrefab: {fileID: 2951513088109954260, guid: 34b4e2d8b2cb71245bdc2e1ab9a3d6cd, type: 3}
+  _icon: {fileID: 21300000, guid: 42038a6b5240cf449a9ca7e30f8c6bd6, type: 3}
   _pointCost: 15
+  _valueMultiplier: 1
   _weight: 1
   _isFoot: 0
   _movementSpeed: 0

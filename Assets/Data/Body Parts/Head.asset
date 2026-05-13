@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0623657e5a0340df8d29f384bdd72557, type: 3}
   m_Name: Head
   m_EditorClassIdentifier: 
+  _partPrefab: {fileID: 6103842186333936583, guid: 51b603981dc66a948a52316933bcee2a, type: 3}
+  _icon: {fileID: 21300000, guid: e11e7406ab88d4043ac514db9f538d72, type: 3}
   _pointCost: 20
+  _valueMultiplier: 1
   _weight: 15
   _isFoot: 0
   _movementSpeed: 0

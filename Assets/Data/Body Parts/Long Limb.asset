@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0623657e5a0340df8d29f384bdd72557, type: 3}
   m_Name: Long Limb
   m_EditorClassIdentifier: 
+  _partPrefab: {fileID: 6750167296086516082, guid: 2f5828e4a612eda498b280c81fcffec7, type: 3}
+  _icon: {fileID: 21300000, guid: 3112e9cf985c8cf4abd35bbbba512458, type: 3}
   _pointCost: 5
-  _weight: 30
+  _valueMultiplier: 1
+  _weight: 10
   _isFoot: 0
   _movementSpeed: 0.4
   _isHand: 0

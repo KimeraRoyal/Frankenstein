@@ -7,6 +7,7 @@ namespace Bodybuilder.Bodybuilder
     {
         private BodyPart _mainPart;
 
+        [SerializeField] private int _maxCost = 100;
         private int _cost;
         
         private float _weight;
@@ -19,7 +20,9 @@ namespace Bodybuilder.Bodybuilder
 
         private PartFeatures _features;
 
+        public int MaxCost => _maxCost;
         public int Cost => _cost;
+        public float CostSpentPercentage => Mathf.Clamp01((float) Cost / MaxCost);
         
         public float Weight => _weight;
 
@@ -61,5 +64,8 @@ namespace Bodybuilder.Bodybuilder
             
             OnStatisticsUpdated?.Invoke();
         }
+
+        public bool CanAddPoints(int amount)
+            => _cost + amount <= _maxCost;
     }
 }

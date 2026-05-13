@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0623657e5a0340df8d29f384bdd72557, type: 3}
   m_Name: Torso
   m_EditorClassIdentifier: 
+  _partPrefab: {fileID: 7189422165192246627, guid: cf980b83692cfdc41b557d26eecc0c30, type: 3}
+  _icon: {fileID: 21300000, guid: d5d0ba6074285a347872d36e7c490259, type: 3}
   _pointCost: 10
+  _valueMultiplier: 1
   _weight: 90
   _isFoot: 0
   _movementSpeed: 0

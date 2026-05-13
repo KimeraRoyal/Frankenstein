@@ -12,6 +12,11 @@ namespace Bodybuilder
 
         [SerializeField] private Vector3 _minPoint;
         [SerializeField] private Vector3 _maxPoint;
+
+        [SerializeField] private AudioSource _attachSound;
+        [SerializeField] private AudioSource _detachSound;
+
+        [SerializeField] private float _movementSpeed = 1.0f;
         
         private ConnectionPoint _closestPoint;
 
@@ -24,24 +29,27 @@ namespace Bodybuilder
 
         public bool Grab()
         {
-            _part.Disconnect();
+            if(_part.Disconnect()) { _detachSound?.Play(); }
             return true;
         }
 
         public void Release()
         {
-            _part.Connect(_closestPoint);
+            if(_part.Connect(_closestPoint)) { _attachSound?.Play(); }
             _line.VisualizeDrag(null, null);
         }
 
         public Vector3 Drag(Vector3 amount)
         {
-            var newPosition = transform.position + amount;
-            for (var axis = 0; axis < 3; axis++)
+            if (_movementSpeed > 0.001f)
             {
-                newPosition[axis] = Mathf.Clamp(newPosition[axis], _minPoint[axis], _maxPoint[axis]);
+                var newPosition = transform.position + amount * _movementSpeed;
+                for (var axis = 0; axis < 3; axis++)
+                {
+                    newPosition[axis] = Mathf.Clamp(newPosition[axis], _minPoint[axis], _maxPoint[axis]);
+                }
+                transform.position = newPosition;
             }
-            transform.position = newPosition;
             
             _closestPoint = _part.FindClosestConnectionPoint(transform.position);
 

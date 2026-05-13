@@ -5,7 +5,11 @@ namespace Bodybuilder.Bodybuilder
     [CreateAssetMenu(fileName = "Body Part Info", menuName = "Bodybuilding/Body Part Info")]
     public class PartInfo : ScriptableObject
     {
+        [SerializeField] private BodyPart _partPrefab;
+        [SerializeField] private Sprite _icon;
+        
         [SerializeField] private int _pointCost = 1;
+        [SerializeField] private float _valueMultiplier = 1.0f;
         
         [SerializeField] private float _weight = 1.0f;
 
@@ -17,7 +21,11 @@ namespace Bodybuilder.Bodybuilder
 
         [SerializeField] private PartFeatures _features;
 
+        public BodyPart PartPrefab => _partPrefab;
+        public Sprite Icon => _icon;
+
         public int PointCost => _pointCost;
+        public float ValueMultiplier => _valueMultiplier;
 
         public float Weight => _weight;
 
