@@ -1,7 +1,10 @@
 {
     "name": "Bodybuilder.Bodybuilder",
     "rootNamespace": "Bodybuilder",
-    "references": ["GUID:ab56d04769eaf1d4c961de3693c7ac54"],
+    "references": [
+        "GUID:ab56d04769eaf1d4c961de3693c7ac54",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

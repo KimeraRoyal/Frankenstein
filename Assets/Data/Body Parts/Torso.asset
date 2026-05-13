@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0623657e5a0340df8d29f384bdd72557, type: 3}
   m_Name: Torso
   m_EditorClassIdentifier: 
+  _pointCost: 10
   _weight: 90
+  _isFoot: 0
+  _movementSpeed: 0
+  _isHand: 0
+  _climbingSpeed: 0
+  _features: 0

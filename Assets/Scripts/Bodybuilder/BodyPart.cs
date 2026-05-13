@@ -19,7 +19,40 @@ namespace Bodybuilder.Bodybuilder
 
         public PartInfo Info => _info;
 
+        public int TotalCost => _info.PointCost + _childPoints.Sum(child => child.Part.TotalCost);
+        
         public float TotalWeight => _info.Weight + _childPoints.Sum(child => child.Part.TotalWeight);
+
+        public PartFeatures TotalFeatures => _childPoints.Aggregate(_info.Features, (current, child) => current | child.Part.TotalFeatures);
+
+        public int TotalFootCount => (_info.IsFoot ? 1 : 0) + _childPoints.Sum(child => child.Part.TotalFootCount);
+
+        public float TotalMovementSpeed
+        {
+            get
+            {
+                var movementSpeed = 0.0f;
+                if (TotalFootCount > 0)
+                {
+                    movementSpeed += _info.MovementSpeed + _childPoints.Sum(child => child.Part.TotalMovementSpeed);
+                }
+                return movementSpeed;
+            }
+        }
+        
+        public int TotalHandCount => (_info.IsHand ? 1 : 0) + _childPoints.Sum(child => child.Part.TotalHandCount);
+        public float TotalClimbingSpeed
+        {
+            get
+            {
+                var climbingSpeed = 0.0f;
+                if (TotalHandCount > 0)
+                {
+                    climbingSpeed += _info.ClimbingSpeed + _childPoints.Sum(child => child.Part.TotalClimbingSpeed);
+                }
+                return climbingSpeed;
+            }
+        }
 
         public ConnectionPoint ConnectionPoint => _connectionPoint;
         public ConnectionPoint[] ExtensionPoints => _extensionPoints;

@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fd7dbbe58940e9a5b001e4fc0420a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weight: 0
 --- !u!114 &7189422165192246627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da66d3d30e7d4464eac9e1b9f452329d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minPoint: {x: -2, y: -2.5, z: -1.5}
+  _maxPoint: {x: 5, y: 4.5, z: 5}
 --- !u!1 &5226443363335536114
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +351,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 15977181396065200}
     m_Modifications:
+    - target: {fileID: 158414440630192267, guid: 92c8c1e5b643a994780a208acdb89588, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2119f31a2b6ab7d41acfe8d486d06326, type: 2}
     - target: {fileID: 4244827557853904210, guid: 92c8c1e5b643a994780a208acdb89588, type: 3}
       propertyPath: m_Name
       value: Left Arm Connection
@@ -424,6 +429,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 15977181396065200}
     m_Modifications:
+    - target: {fileID: 158414440630192267, guid: 92c8c1e5b643a994780a208acdb89588, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2119f31a2b6ab7d41acfe8d486d06326, type: 2}
     - target: {fileID: 4244827557853904210, guid: 92c8c1e5b643a994780a208acdb89588, type: 3}
       propertyPath: m_Name
       value: Right Leg Connection
@@ -498,6 +507,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 15977181396065200}
     m_Modifications:
+    - target: {fileID: 158414440630192267, guid: 92c8c1e5b643a994780a208acdb89588, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2119f31a2b6ab7d41acfe8d486d06326, type: 2}
     - target: {fileID: 4244827557853904210, guid: 92c8c1e5b643a994780a208acdb89588, type: 3}
       propertyPath: m_Name
       value: Neck Connection
@@ -572,6 +585,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 15977181396065200}
     m_Modifications:
+    - target: {fileID: 158414440630192267, guid: 92c8c1e5b643a994780a208acdb89588, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2119f31a2b6ab7d41acfe8d486d06326, type: 2}
     - target: {fileID: 4244827557853904210, guid: 92c8c1e5b643a994780a208acdb89588, type: 3}
       propertyPath: m_Name
       value: Left Leg Connection
@@ -646,6 +663,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 15977181396065200}
     m_Modifications:
+    - target: {fileID: 158414440630192267, guid: 92c8c1e5b643a994780a208acdb89588, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2119f31a2b6ab7d41acfe8d486d06326, type: 2}
     - target: {fileID: 4244827557853904210, guid: 92c8c1e5b643a994780a208acdb89588, type: 3}
       propertyPath: m_Name
       value: Right Arm Connection

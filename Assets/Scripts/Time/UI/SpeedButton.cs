@@ -35,6 +35,11 @@ namespace Bodybuilder.Time.UI
             _key.action.started += KeyPressed;
         }
 
+        private void OnDestroy()
+        {
+            _key.action.started -= KeyPressed;
+        }
+
         private void Click()
         {
             if(!_interactable) { return; }

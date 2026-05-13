@@ -9,6 +9,9 @@ namespace Bodybuilder
         private BodyPart _part;
         
         private DragLine _line;
+
+        [SerializeField] private Vector3 _minPoint;
+        [SerializeField] private Vector3 _maxPoint;
         
         private ConnectionPoint _closestPoint;
 
@@ -33,12 +36,23 @@ namespace Bodybuilder
 
         public Vector3 Drag(Vector3 amount)
         {
-            transform.position += amount;
+            var newPosition = transform.position + amount;
+            for (var axis = 0; axis < 3; axis++)
+            {
+                newPosition[axis] = Mathf.Clamp(newPosition[axis], _minPoint[axis], _maxPoint[axis]);
+            }
+            transform.position = newPosition;
+            
             _closestPoint = _part.FindClosestConnectionPoint(transform.position);
 
             _line.VisualizeDrag(_part.ConnectionPoint, _closestPoint);
             
             return amount;
+        }
+
+        public void Rotate(Vector3 amount)
+        {
+            transform.rotation *= Quaternion.Euler(amount);
         }
     }
 }

@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0623657e5a0340df8d29f384bdd72557, type: 3}
   m_Name: Foot
   m_EditorClassIdentifier: 
+  _pointCost: 10
   _weight: 2.5
+  _isFoot: 1
+  _movementSpeed: 0.1
+  _isHand: 0
+  _climbingSpeed: 0
+  _features: 1

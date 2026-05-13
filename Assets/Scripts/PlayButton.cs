@@ -8,6 +8,8 @@ namespace Bodybuilder
     {
         [SerializeField] private Timer _waitTimer;
 
+        [SerializeField] private int _sceneIndex = 1;
+
         private void Awake()
         {
             _waitTimer.OnInterval.AddListener(Play);
@@ -26,7 +28,7 @@ namespace Bodybuilder
 
         public void Play()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(_sceneIndex);
         }
     }
 }

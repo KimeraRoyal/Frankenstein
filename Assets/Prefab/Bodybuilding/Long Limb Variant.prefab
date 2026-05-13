@@ -52,6 +52,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1625196466958261193, guid: 485f80501ff6ca84c89dec93ac381022, type: 3}
+      propertyPath: _maxPoint.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625196466958261193, guid: 485f80501ff6ca84c89dec93ac381022, type: 3}
+      propertyPath: _maxPoint.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625196466958261193, guid: 485f80501ff6ca84c89dec93ac381022, type: 3}
+      propertyPath: _maxPoint.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625196466958261193, guid: 485f80501ff6ca84c89dec93ac381022, type: 3}
+      propertyPath: _minPoint.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625196466958261193, guid: 485f80501ff6ca84c89dec93ac381022, type: 3}
+      propertyPath: _minPoint.y
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625196466958261193, guid: 485f80501ff6ca84c89dec93ac381022, type: 3}
+      propertyPath: _minPoint.z
+      value: -1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4019134832043801481, guid: 485f80501ff6ca84c89dec93ac381022, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2

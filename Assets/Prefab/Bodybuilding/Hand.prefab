@@ -525,6 +525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da66d3d30e7d4464eac9e1b9f452329d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minPoint: {x: -2, y: -2.5, z: -1.5}
+  _maxPoint: {x: 5, y: 4.5, z: 5}
 --- !u!1 &6595402804201734215
 GameObject:
   m_ObjectHideFlags: 0

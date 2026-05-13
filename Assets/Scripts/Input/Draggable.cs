@@ -20,5 +20,7 @@ namespace Bodybuilder.Input
             transform.localPosition += amount;
             return amount;
         }
+
+        public void Rotate(Vector3 amount) { }
     }
 }

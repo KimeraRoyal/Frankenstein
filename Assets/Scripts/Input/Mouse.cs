@@ -27,6 +27,12 @@ namespace Bodybuilder.Input
                 _buttonAction.action.canceled += ButtonReleased;
             }
 
+            public void DeregisterActions()
+            {
+                _buttonAction.action.started -= ButtonPressed;
+                _buttonAction.action.canceled -= ButtonReleased;
+            }
+
             private void ButtonPressed(InputAction.CallbackContext obj)
             {
                 _holding = true;
@@ -69,6 +75,15 @@ namespace Bodybuilder.Input
             foreach (var button in _buttons)
             {
                 button.RegisterActions();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            _mousePosition.action.performed -= MouseMoved;
+            foreach (var button in _buttons)
+            {
+                button.DeregisterActions();
             }
         }
 

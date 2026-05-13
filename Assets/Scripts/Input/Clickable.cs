@@ -18,6 +18,8 @@ namespace Bodybuilder.Input
         public Vector3 Drag(Vector3 amount)
             => amount;
 
+        public void Rotate(Vector3 amount) { }
+
         protected abstract void Click();
     }
 }

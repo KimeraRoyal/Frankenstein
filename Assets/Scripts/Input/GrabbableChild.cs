@@ -19,5 +19,8 @@ namespace Bodybuilder.Input
 
         public Vector3 Drag(Vector3 amount)
             => _parent.Drag(amount);
+
+        public void Rotate(Vector3 amount)
+            => _parent.Rotate(amount);
     }
 }

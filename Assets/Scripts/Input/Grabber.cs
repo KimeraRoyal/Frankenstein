@@ -16,6 +16,8 @@ namespace Bodybuilder.Input
         [SerializeField] private float _grabRadius = 1.0f;
         [SerializeField] private LayerMask _grabbableMask;
 
+        [SerializeField] private float _rotationWeight = 40.0f;
+
         private void Awake()
         {
             _mouse = GetComponent<Mouse>();
@@ -59,23 +61,32 @@ namespace Bodybuilder.Input
         {
             if(_grabbed == null) { return; }
             var testPoint = new Vector3(screenPos.x, screenPos.y, _grabbedDistance);
-            testPoint = _camera.ScreenToWorldPoint(testPoint);
-
-            testPoint = transform.InverseTransformPoint(testPoint);
-            var delta = testPoint - _previousPoint;
-            delta.z = 0.0f;
-            if (_mouse.RMB.Held)
-            {
-                Debug.Log(delta / _grabbedDistance * 100.0f);
-            }
-            else if (_mouse.MMB.Held)
-            {
-                delta = new Vector3(0.0f, 0.0f, delta.y);
-                _grabbedDistance += delta.y;
-            }
-            delta = transform.TransformDirection(delta);
+            var previousPoint = testPoint - (Vector3)screenDelta;
             
-            _grabbed.Drag(delta);
+            testPoint = _camera.ScreenToWorldPoint(testPoint);
+            previousPoint = _camera.ScreenToWorldPoint(previousPoint);
+            
+            testPoint = transform.InverseTransformPoint(testPoint);
+            previousPoint = transform.InverseTransformPoint(previousPoint);
+            
+            var delta = testPoint - previousPoint;
+            delta.z = 0.0f;
+            if (_mouse.MMB.Held)
+            {
+                var angles = new Vector3(-delta.y / _grabbedDistance, delta.x / _grabbedDistance, 0.0f) * _rotationWeight;
+                _grabbed.Rotate(angles);
+            }
+            else
+            {
+                if (_mouse.RMB.Held)
+                {
+                    delta = new Vector3(0.0f, 0.0f, delta.y);
+                    _grabbedDistance += delta.y;
+                }
+                delta = transform.TransformDirection(delta);
+            
+                _grabbed.Drag(delta);
+            }
             _previousPoint = testPoint;
         }
         
