@@ -1570,7 +1570,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1725692479}
+      - m_Target: {fileID: 8442831042043711562}
         m_TargetAssemblyTypeName: Bodybuilder.PlayButton, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
